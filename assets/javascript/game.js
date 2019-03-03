@@ -3,19 +3,20 @@ var game = {
     healthPoints: [200, 150, 200, 100],
     attackPower: [20, 15, 20, 15],
     counterattackPower: [40, 30, 40, 30],
-    playerTracker: [1, 1, 1, 1],
-    enemyTracker: [1, 1, 1, 1],
-    defenderTracker: [1, 1, 1, 1],
+    playerTracker: [0, 0, 0, 0],
+    enemyTracker: [0, 0, 0, 0],
+    defenderTracker: [0, 0, 0, 0],
     imageLocation: ["./assets/images/darthmaulProfile.jpg",
         "./assets/images/kylorenProfile.jpg",
         "./assets/images/quigonjinnProfile.jpg",
         "./assets/images/yodaProfile.jpeg"],
 
-    reset: function () {
+    resetValues: function () {
         this.healthPoints = [200, 150, 200, 100];
         this.playerTracker = [1, 1, 1, 1];
         this.enemyTracker = [0, 0, 0, 0];
         this.defenderTracker = [0, 0, 0, 0];
+        this.drawCards();
     },
 
     drawCards: function() {
@@ -46,46 +47,40 @@ var game = {
 
             if (game.playerTracker[i] === 1) {
                 $("#selectionRow").append(playerCard);
-            }
+            };
             if (game.enemyTracker[i] === 1) {
                 $("#enemyRow").append(enemyCard);
-            }
+            };
             if (game.defenderTracker[i] === 1) {
                 $("#defenderRow").append(defenderCard);
-            }
+            };
         }
     }
 };
 
+game.resetValues();
 var playerSelection;
-
-game.reset();
-game.drawCards();
 
 $(".playerCard").on("click", function(){    
     for(var i=0; i<4; i++){
         if($(this).attr("name") === game.playerName[i]){
             game.playerTracker[i]=1;
-            game.drawCards();
         }
         else{
             game.playerTracker[i]=0;
             game.enemyTracker[i]=1;
-            game.drawCards();
-            
         }
     }
+    game.drawCards();
 });
 
-$(".enemyCard").on("click", function(){
-
-    alert("ENEMY CARD SELECTED");  //This should be alerting me when I click enemyCard but it won't!! :(
+$("#enemyRow").on("click",".enemyCard", function(){
     
-    // for(var i=0; i<4; i++){
-    //     if(game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i]){
-    //         game.enemyTracker[i]=0;
-    //         game.defenderTracker[i]=1;
-    //         game.drawCards();
-    //     }
-    // }
+    for(var i=0; i<4; i++){
+        if(game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i]){
+            game.enemyTracker[i]=0;
+            game.defenderTracker[i]=1;
+            game.drawCards();
+        }
+    }    
 });
