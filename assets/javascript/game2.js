@@ -26,15 +26,15 @@ var game = {
             var defenderCard = $("<div>");
 
             enemyCard.addClass("enemyCard");
-            enemyCard.html("<h5>" + this.playerName[i] + "</h5> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            enemyCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
             enemyCard.append(this.healthPoints[i]);
 
             playerCard.addClass("playerCard");
-            playerCard.html("<h5>" + this.playerName[i] + "</h5> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            playerCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
             playerCard.append(this.healthPoints[i]);
 
             defenderCard.addClass("defenderCard");
-            defenderCard.html("<h5>" + this.playerName[i] + "</h5> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            defenderCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
             defenderCard.append(this.healthPoints[i]);
 
             if (game.playerTracker[i] === 1) {
