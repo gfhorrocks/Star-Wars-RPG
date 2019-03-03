@@ -1,102 +1,91 @@
-var playerPicked = false;
-var enemyPicked = false;
-// var characterClone = $("#characterRow").clone();
+var game = {
+    playerName: ["Darth Maul", "Kylo Ren", "Qui Gon Jinn", "Yoda"],
+    healthPoints: [200, 150, 200, 100],
+    attackPower: [20, 15, 20, 15],
+    counterattackPower: [40, 30, 40, 30],
+    playerTracker: [1, 1, 1, 1],
+    enemyTracker: [1, 1, 1, 1],
+    defenderTracker: [1, 1, 1, 1],
+    imageLocation: ["./assets/images/darthmaulProfile.jpg",
+        "./assets/images/kylorenProfile.jpg",
+        "./assets/images/quigonjinnProfile.jpg",
+        "./assets/images/yodaProfile.jpeg"],
 
-$("#profilePic1").on("click", function () {
-    console.log("playerPicked: " + playerPicked +" enemyPicked: " +enemyPicked);
-    if (!playerPicked) {
-        $("#characterCard1").empty();
-        setplayerCard(1);
-        playerPicked = true;
-    }
-    else if (!enemyPicked) {
-        $("#characterCard1").empty();
-        setenemyCard(1);
-        enemyPicked = true;
-    }
-});
+    reset: function () {
+        this.healthPoints = [200, 150, 200, 100];
+        this.playerTracker = [1, 1, 1, 1];
+        this.enemyTracker = [0, 0, 0, 0];
+        this.defenderTracker = [0, 0, 0, 0];
+    },
 
-$("#profilePic2").on("click", function () {
-    if (!playerPicked) {
-        $("#characterCard2").empty();
-        setplayerCard(2);
-        playerPicked = true;
-    }
-    else if (!enemyPicked) {
-        $("#characterCard2").empty();
-        setenemyCard(2);
-        enemyPicked = true;
-    }
-});
+    drawCards: function() {
+        $("#selectionRow").empty();
+        $("#enemyRow").empty();
+        $("#defenderRow").empty();
 
-$("#profilePic3").on("click", function () {
-    if (!playerPicked) {
-        $("#characterCard3").empty();
-        setplayerCard(3);
-        playerPicked = true;
-    }
-    else if (!enemyPicked) {
-        $("#characterCard3").empty();
-        setenemyCard(3);
-        enemyPicked = true;
-    }
-});
+        for (var i = 0; i < 4; i++) {
 
-$("#profilePic4").on("click", function () {
-    if (!playerPicked) {
-        $("#characterCard4").empty();
-        setplayerCard(4);
-        playerPicked = true;
-    }
-    else if (!enemyPicked) {
-        $("#characterCard4").empty();
-        setenemyCard(4);
-        enemyPicked = true;
-    }
-});
+            var playerCard = $("<div>");
+            var enemyCard = $("<div>");
+            var defenderCard = $("<div>");
 
-$("#profilePic5").on("click", function () {
-    if (!playerPicked) {
-        $("#characterCard5").empty();
-        setplayerCard(5);
-        playerPicked = true;
-    }
-    else if (!enemyPicked) {
-        $("#characterCard5").empty();
-        setenemyCard(5);
-        enemyPicked = true;
-    }
-});
+            playerCard.addClass("playerCard");
+            playerCard.attr("name",this.playerName[i]);
+            playerCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            playerCard.append(this.healthPoints[i]);
 
-$("#profilePic6").on("click", function () {
-    if (!playerPicked) {
-        $("#characterCard6").empty();
-        setplayerCard(6);
-        playerPicked = true;
+            enemyCard.addClass("enemyCard");
+            enemyCard.attr("name",this.playerName[i]);
+            enemyCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            enemyCard.append(this.healthPoints[i]);
+
+            defenderCard.addClass("defenderCard");
+            defenderCard.attr("name",this.playerName[i]);
+            defenderCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            defenderCard.append(this.healthPoints[i]);
+
+            if (game.playerTracker[i] === 1) {
+                $("#selectionRow").append(playerCard);
+            }
+            if (game.enemyTracker[i] === 1) {
+                $("#enemyRow").append(enemyCard);
+            }
+            if (game.defenderTracker[i] === 1) {
+                $("#defenderRow").append(defenderCard);
+            }
+        }
     }
-    else if (!enemyPicked) {
-        $("#characterCard6").empty();
-        setenemyCard(6);
-        enemyPicked = true;
-    }
-});
-
-$("#resetButton").on("click", function (){
-    document.location.reload(true);
-    // $("#characterRow").replaceWith(characterClone);
-    // playerPicked = false;
-    // enemyPicked = false;
-    // console.log("Picked Values Reset");
-    // console.log("playerPicked: " + playerPicked +" enemyPicked: " +enemyPicked);
-});
-
-function setplayerCard(index) {
-
 };
 
-function setenemyCard(index) {
+var playerSelection;
 
-};
+game.reset();
+game.drawCards();
 
+$(".playerCard").on("click", function(){    
+    for(var i=0; i<4; i++){
+        if($(this).attr("name") === game.playerName[i]){
+            game.playerTracker[i]=1;
+            game.drawCards();
+        }
+        else{
+            game.playerTracker[i]=0;
+            game.enemyTracker[i]=1;
+            game.drawCards();
+            
+        }
+    }
+});
 
+$(".enemyCard").on("click", function(){
 
+    alert("ENEMY CARD SELECTED");  //This should be alerting me when I click enemyCard but it won't!! :(
+    
+    // for(var i=0; i<4; i++){
+    //     if(game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i]){
+    //         game.enemyTracker[i]=0;
+    //         game.defenderTracker[i]=1;
+    //         game.drawCards();
+    //     }
+    // }
+});

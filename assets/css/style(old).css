@@ -1,0 +1,47 @@
+body{
+    background-image: url("../images/starwarsBackground.jpg");
+    background-size: fill;
+    background-repeat: no-repeat;
+}
+
+h1,h4{
+    color: white;
+    text-align: center;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    margin: 10px 0px 10px 0px;
+}
+
+.profilePic{
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    height: 80%;
+}
+
+#characterRow{
+  width: 90%;
+  margin-left: 5%;
+  height: auto;
+  max-height: auto;
+}
+
+.profilePic{
+    width: 100%;
+    height: auto;
+}
+
+.card-img-top{
+    margin-top: 1em;
+    max-height: 250px;
+    width: auto;
+}
+
+
+
+
+
+
+

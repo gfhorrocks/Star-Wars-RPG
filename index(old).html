@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+
+<body>
+    <div class="row">
+        <h1 class="col-md-6 offset-md-3">Star Wars RPG Game</h1>
+    </div>
+
+    <div class="row" id="characterRow">
+        <div class="character col-2" id="characterCard1">
+            <img class="profilePic" id="profilePic1" src="./assets/images/darthmaulProfile.jpg">
+        </div>
+        <div class="character col-2" id="characterCard2">
+            <img class="profilePic" id="profilePic2" src="./assets/images/quigonjinnProfile.jpg">
+        </div>
+        <div class="character col-2" id="characterCard3">
+            <img class="profilePic" id="profilePic3" src="./assets/images/yodaProfile.jpeg">
+        </div>
+        <div class="character col-2" id="characterCard4">
+            <img class="profilePic" id="profilePic4" src="./assets/images/kylorenProfile.jpg">
+        </div>
+        <div class="character col-2" id="characterCard5">
+            <img class="profilePic" id="profilePic5" src="./assets/images/lukesywalkerProfile.jpg">
+        </div>
+        <div class="character col-2" id="characterCard6">
+            <img class="profilePic" id="profilePic6" src="./assets/images/darthvaderProfile.jpg">
+        </div>
+    </div>
+
+    <h4 class="col-md-6 offset-md-3" id="gameInfo">Choose Your Character</h4>
+
+    <div class="row" id="versusTitle">
+        <div class="card col-2 offset-4" id="playerCard">
+            <img class="card-img-top" id="playerImage" src="./assets/images/starwarsProfile.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" id="playerName"></h5>
+                <p class="card-text" id="playerHP"></p>
+            </div>
+        </div>
+
+        <div class="card col-2" id="enemyCard">
+            <img class="card-img-top" id="enemyImage" src="./assets/images/starwarsProfile.png" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title" id="enemyName"></h5>
+                <p class="card-text" id="enemyHP"></p>
+            </div>
+        </div>
+    </div>
+
+    </br>
+    <button class="col-4 offset-4" id="resetButton">CLICK TO RESTART</button>
+
+
+
+    <!-- <div class="row justify-content-center">
+        <div class="card">
+            <img class="card-img-top" src="./assets/images/darthmaulProfile.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Darth Maul</h5>
+                <p class="card-text">HP: 100</p>
+                <a href="#" class="btn btn-primary">Choose</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="./assets/images/kylorenProfile.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Kylo Ren</h5>
+                <p class="card-text">HP: 100</p>
+                <a href="#" class="btn btn-primary">Choose</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img-top" src="./assets/images/quigonjinnProfile.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Qui Gon Jinn</h5>
+                <p class="card-text">HP: 100</p>
+                <a href="#" class="btn btn-primary">Choose</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img-top" src="./assets/images/yodaProfile.jpeg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Yoda</h5>
+                <p class="card-text">HP: 100</p>
+                <a href="#" class="btn btn-primary">Choose</a>
+            </div>
+        </div>
+    </div>  -->
+
+
+    <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>
