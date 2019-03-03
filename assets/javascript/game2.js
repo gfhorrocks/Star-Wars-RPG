@@ -4,8 +4,8 @@ var game = {
     attackPower: [20, 15, 20, 15],
     counterattackPower: [40, 30, 40, 30],
     playerTracker: [1, 1, 1, 1],
-    enemyTracker: [0, 0, 0, 0],
-    defenderTracker: [0, 0, 0, 0],
+    enemyTracker: [1, 1, 1, 1],
+    defenderTracker: [1, 1, 1, 1],
     imageLocation: ["./assets/images/darthmaulProfile.jpg",
         "./assets/images/kylorenProfile.jpg",
         "./assets/images/quigonjinnProfile.jpg",
@@ -19,7 +19,11 @@ var game = {
     },
 
     drawCards: function() {
-        for (i = 0; i < 4; i++) {
+        $("#selectionRow").empty();
+        $("#enemyRow").empty();
+        $("#defenderRow").empty();
+
+        for (var i = 0; i < 4; i++) {
 
             var playerCard = $("<div>");
             var enemyCard = $("<div>");
@@ -53,22 +57,37 @@ var game = {
     }
 };
 
+var playerSelection;
+
+game.reset();
 game.drawCards();
 
-$(".playerCard").on("click", function(){
-
-    console.log($(this).attr("name"));
-    
+$(".playerCard").on("click", function(){    
     for(var i=0; i<4; i++){
         if($(this).attr("name") === game.playerName[i]){
             game.playerTracker[i]=1;
+            game.drawCards();
         }
         else{
             game.playerTracker[i]=0;
             game.enemyTracker[i]=1;
+            game.drawCards();
+            
         }
     }
-    $("#selectionRow").empty();
-    game.drawCards();
+});
+
+$(".enemyCard").on("click", function(){
+
+    alert("YOU'VE MADE IT");
+    
+    for(var i=0; i<4; i++){
+        if(game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i]){
+            game.enemyTracker[i]=0;
+            game.defenderTracker[i]=1;
+
+            game.drawCards();
+        }
+    }
 });
 
