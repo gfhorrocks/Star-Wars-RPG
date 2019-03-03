@@ -79,15 +79,13 @@ $(".playerCard").on("click", function(){
 
 $(".enemyCard").on("click", function(){
 
-    alert("YOU'VE MADE IT");
+    alert("ENEMY CARD SELECTED");  //This should be alerting me when I click enemyCard but it won't!! :(
     
-    for(var i=0; i<4; i++){
-        if(game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i]){
-            game.enemyTracker[i]=0;
-            game.defenderTracker[i]=1;
-
-            game.drawCards();
-        }
-    }
+    // for(var i=0; i<4; i++){
+    //     if(game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i]){
+    //         game.enemyTracker[i]=0;
+    //         game.defenderTracker[i]=1;
+    //         game.drawCards();
+    //     }
+    // }
 });
-
