@@ -5,7 +5,7 @@ body{
 
 .playerCard{
     height: fit-content;
-    width: 150px;
+    width: fit-content;
     background-color: white;
     font-size: small;
     text-align: center;
@@ -17,7 +17,7 @@ body{
 
 .enemyCard{
     height: fit-content;
-    width: 150px;
+    width: fit-content;
     background-color: red;
     font-size: small;
     text-align: center;
@@ -30,7 +30,7 @@ body{
 .defenderCard{
     color: white;
     height: fit-content;
-    width: 150px;
+    width: 100px;
     background-color: black;
     font-size: small;
     text-align: center;
@@ -40,16 +40,13 @@ body{
     padding: 1em;
 }
 
-
 #selectionRow,#enemyRow,#defenderRow{
     display: inline-flex;
     height: 200px;
 }
 
-
-
 #cardImage{
-    height: 100px;
-    width: 100px;
+    height: 90px;
+    width: 90px;
 }
 

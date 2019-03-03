@@ -4,7 +4,8 @@ var game = {
     attackPower: [20, 15, 20, 15],
     counterattackPower: [40, 30, 40, 30],
     playerTracker: [1, 1, 1, 1],
-    enemyTracker: [1, 1, 1, 1],
+    enemyTracker: [0, 0, 0, 0],
+    defenderTracker: [0, 0, 0, 0],
     imageLocation: ["./assets/images/darthmaulProfile.jpg",
         "./assets/images/kylorenProfile.jpg",
         "./assets/images/quigonjinnProfile.jpg",
@@ -13,8 +14,8 @@ var game = {
     reset: function () {
         this.healthPoints = [200, 150, 200, 100];
         this.playerTracker = [1, 1, 1, 1];
-        this.enemyTracker = [1, 1, 1, 1];
-        this.defenderTracker = [1, 1, 1, 1];
+        this.enemyTracker = [0, 0, 0, 0];
+        this.defenderTracker = [0, 0, 0, 0];
     },
 
     drawCards: function (rw) {
