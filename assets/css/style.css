@@ -33,6 +33,11 @@ h1,h4{
     height: auto;
 }
 
+.card-img-top{
+    margin-top: 1em;
+    max-height: 250px;
+    width: auto;
+}
 
 
 
