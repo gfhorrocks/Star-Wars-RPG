@@ -18,22 +18,25 @@ var game = {
         this.defenderTracker = [0, 0, 0, 0];
     },
 
-    drawCards: function (rw) {
+    drawCards: function() {
         for (i = 0; i < 4; i++) {
 
             var playerCard = $("<div>");
             var enemyCard = $("<div>");
             var defenderCard = $("<div>");
 
-            enemyCard.addClass("enemyCard");
-            enemyCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
-            enemyCard.append(this.healthPoints[i]);
-
             playerCard.addClass("playerCard");
+            playerCard.attr("name",this.playerName[i]);
             playerCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
             playerCard.append(this.healthPoints[i]);
 
+            enemyCard.addClass("enemyCard");
+            enemyCard.attr("name",this.playerName[i]);
+            enemyCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
+            enemyCard.append(this.healthPoints[i]);
+
             defenderCard.addClass("defenderCard");
+            defenderCard.attr("name",this.playerName[i]);
             defenderCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
             defenderCard.append(this.healthPoints[i]);
 
@@ -50,6 +53,22 @@ var game = {
     }
 };
 
-
-game.reset();
 game.drawCards();
+
+$(".playerCard").on("click", function(){
+
+    console.log($(this).attr("name"));
+    
+    for(var i=0; i<4; i++){
+        if($(this).attr("name") === game.playerName[i]){
+            game.playerTracker[i]=1;
+        }
+        else{
+            game.playerTracker[i]=0;
+            game.enemyTracker[i]=1;
+        }
+    }
+    $("#selectionRow").empty();
+    game.drawCards();
+});
+
