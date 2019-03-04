@@ -19,7 +19,9 @@ var game = {
         this.drawCards();
         chosen=false;
         gameover=false;
-
+        powerBase=0;
+        $("#attackButton").text("Attack");
+        $("characterText").text("Your Character");
     },
 
     drawCards: function () {
@@ -54,7 +56,7 @@ var game = {
             if (game.enemyTracker[i] === 1) {
                 $("#enemyRow").append(enemyCard);
             };
-            if (game.defenderTracker[i] === 1) {
+            if (game.defenderTracker[i] === 1  && game.healthPoints[i]>0) {
                 $("#defenderRow").append(defenderCard);
             };
         }
@@ -69,6 +71,7 @@ var saberClash = new Audio('http://soundbible.com/grab.php?id=18&type=mp3', 100,
 var playerIndex;
 var enemyIndex;
 var gameover;
+var powerBase;
 
 
 $(".playerCard").on("click", function () {
@@ -95,6 +98,7 @@ $("#enemyRow").on("click", ".enemyCard", function () {
             game.defenderTracker[i] = 1;
             game.drawCards();
             enemyIndex = i;
+            powerBase = game.attackPower[i];
             saberOn.play();
             chosen = true;
         }
@@ -109,7 +113,8 @@ $("#attackButton").on("click", function () {
         game.healthPoints[playerIndex] -= game.counterattackPower[enemyIndex];
         $("#fightRow").text("You attacked " + game.playerName[enemyIndex] + " for " + game.attackPower[playerIndex] + " damage!");
         $("#fightRow").append("They countered with " + game.counterattackPower[enemyIndex] + " damage against you!");
-        game.attackPower[playerIndex] = game.attackPower[playerIndex] * 2;
+        game.attackPower[playerIndex] += powerBase;
+        $("#characterText").text("Your Character Power - " +game.attackPower[playerIndex]);
         game.drawCards();
 
         if (game.healthPoints[enemyIndex] <= 0) {
