@@ -132,8 +132,20 @@ $("#attackButton").on("click", function () {
         game.attackPower[playerIndex] += powerBase;
 
         game.drawCards();
+        
+        if (game.healthPoints[playerIndex] < 1) {
+
+            $("#fightRow").text("You have been defeated by " + game.playerName[enemyIndex] + "! Press Restart to Start Over!");
+            $("#attackButton").text("Restart");
+            $("#playerCard").text("Defeated!");
+
+            gameover = true;
+
+            return;
+        }
 
         if (game.healthPoints[enemyIndex] < 1) {
+            
             $("#fightRow").text("You defeated " + game.playerName[enemyIndex] + "! Choose your next opponent!");
             $("#attackButton").text("Retreat!!");
 
@@ -146,14 +158,6 @@ $("#attackButton").on("click", function () {
                 $("#attackButton").text("Restart");
                 gameover = true;
             }
-        }
-        else if (game.healthPoints[playerIndex] < 1) {
-
-            $("#fightRow").text("You have been defeated by " + game.playerName[enemyIndex] + "! Press Restart to Start Over!");
-            $("#attackButton").text("Restart");
-            $("#playerCard").text("Defeated!");
-
-            gameover = true;
         }
     }
     else {
