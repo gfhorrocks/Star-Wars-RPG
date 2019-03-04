@@ -127,7 +127,7 @@ $("#attackButton").on("click", function () {
         game.healthPoints[playerIndex] -= game.counterattackPower[enemyIndex];
 
         $("#fightRow").text("You attacked " + game.playerName[enemyIndex] + " for " + game.attackPower[playerIndex] + " damage!");
-        $("#fightRow").append(" They countered with " + game.counterattackPower[enemyIndex] + " damage against you!");
+        $("#fightRow").append(" He countered with " + game.counterattackPower[enemyIndex] + " damage against you!");
 
         game.attackPower[playerIndex] += powerBase;
 
