@@ -1,8 +1,8 @@
 var game = {
     playerName: ["Darth Maul", "Kylo Ren", "Qui Gon Jinn", "Yoda"],
-    healthPoints: [200, 150, 200, 100],
-    attackPower: [20, 15, 20, 15],
-    counterattackPower: [20, 15, 20, 25],
+    healthPoints: [200, 180, 150, 120],
+    attackPower: [15, 20, 25, 30],
+    counterattackPower: [20, 15, 25, 50],
     playerTracker: [0, 0, 0, 0],
     enemyTracker: [0, 0, 0, 0],
     defenderTracker: [0, 0, 0, 0],
@@ -12,16 +12,19 @@ var game = {
         "./assets/images/yodaProfile.jpeg"],
 
     resetValues: function () {
-        this.healthPoints = [200, 150, 200, 100];
+        this.healthPoints = [200, 180, 150, 120];
         this.playerTracker = [1, 1, 1, 1];
         this.enemyTracker = [0, 0, 0, 0];
         this.defenderTracker = [0, 0, 0, 0];
-        this.drawCards();
-        chosen=false;
-        gameover=false;
-        powerBase=0;
+        this.attackPower = [15, 20, 25, 30];
+        chosen = false;
+        gameover = false;
+        powerBase = 0;
+        wins = 0;
         $("#attackButton").text("Attack");
-        $("characterText").text("Your Character");
+        $("#characterText").text("Your Character");
+        $("#fightRow").text("Fight Section");
+        this.drawCards();
     },
 
     drawCards: function () {
@@ -56,15 +59,13 @@ var game = {
             if (game.enemyTracker[i] === 1) {
                 $("#enemyRow").append(enemyCard);
             };
-            if (game.defenderTracker[i] === 1  && game.healthPoints[i]>0) {
+            if (game.defenderTracker[i] === 1 && game.healthPoints[i] > 0) {
                 $("#defenderRow").append(defenderCard);
             };
         }
     }
 };
 
-game.resetValues();
-var playerSelection;
 var chosen;
 var saberOn = new Audio('http://soundbible.com/grab.php?id=562&type=mp3', 100, true);
 var saberClash = new Audio('http://soundbible.com/grab.php?id=18&type=mp3', 100, true);
@@ -72,13 +73,16 @@ var playerIndex;
 var enemyIndex;
 var gameover;
 var powerBase;
+var wins;
 
+game.resetValues();
 
-$(".playerCard").on("click", function () {
+$("#selectionRow").on("click", ".playerCard", function () {
     for (var i = 0; i < 4; i++) {
         if ($(this).attr("name") === game.playerName[i]) {
             game.playerTracker[i] = 1;
             playerIndex = i;
+            powerBase = game.attackPower[i];
         }
         else {
             game.playerTracker[i] = 0;
@@ -87,6 +91,9 @@ $(".playerCard").on("click", function () {
     }
 
     saberOn.play();
+
+    $("#attackButton").text("Retreat");
+
     game.drawCards();
 });
 
@@ -94,37 +101,58 @@ $("#enemyRow").on("click", ".enemyCard", function () {
 
     for (var i = 0; i < 4; i++) {
         if (game.enemyTracker[i] === 1 && $(this).attr("name") === game.playerName[i] && !chosen) {
+
             game.enemyTracker[i] = 0;
             game.defenderTracker[i] = 1;
             game.drawCards();
+
             enemyIndex = i;
-            powerBase = game.attackPower[i];
             saberOn.play();
             chosen = true;
+
+            $("#attackButton").text("Attack");
         }
     }
 });
 
 $("#attackButton").on("click", function () {
-    if (!gameover) {
+    if (!gameover && chosen) {
+
         saberClash.play();
+
+        $("#characterText").text("Your Character Power: " + game.attackPower[playerIndex]);
         $("fightRow").empty();
+
         game.healthPoints[enemyIndex] -= game.attackPower[playerIndex];
         game.healthPoints[playerIndex] -= game.counterattackPower[enemyIndex];
+
         $("#fightRow").text("You attacked " + game.playerName[enemyIndex] + " for " + game.attackPower[playerIndex] + " damage!");
-        $("#fightRow").append("They countered with " + game.counterattackPower[enemyIndex] + " damage against you!");
+        $("#fightRow").append(" They countered with " + game.counterattackPower[enemyIndex] + " damage against you!");
+
         game.attackPower[playerIndex] += powerBase;
-        $("#characterText").text("Your Character Power - " +game.attackPower[playerIndex]);
+
         game.drawCards();
 
-        if (game.healthPoints[enemyIndex] <= 0) {
+        if (game.healthPoints[enemyIndex] < 1) {
             $("#fightRow").text("You defeated " + game.playerName[enemyIndex] + "! Choose your next opponent!");
-            $("#defenderCard").addClass("fade");
+            $("#attackButton").text("Retreat!!");
+
             chosen = false;
+
+            wins++;
+
+            if (wins === 3) {
+                $("#fightRow").text("You have defeated all the Enemies! Press Restart to Start Over!");
+                $("#attackButton").text("Restart");
+                gameover = true;
+            }
         }
-        else if (game.healthPoints[playerIndex] <= 0) {
+        else if (game.healthPoints[playerIndex] < 1) {
+
             $("#fightRow").text("You have been defeated by " + game.playerName[enemyIndex] + "! Press Restart to Start Over!");
             $("#attackButton").text("Restart");
+            $("#playerCard").text("Defeated!");
+
             gameover = true;
         }
     }
