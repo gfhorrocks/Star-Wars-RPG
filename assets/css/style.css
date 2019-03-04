@@ -49,3 +49,7 @@ body{
     height: 90px;
     width: 90px;
 }
+
+.fade{
+    opacity: 30%;
+}
