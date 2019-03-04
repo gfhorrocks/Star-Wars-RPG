@@ -13,6 +13,7 @@ body{
     border-color: black;
     border-width: 2px;
     padding: 1em;
+    font-weight: bold;
 }
 
 .enemyCard{
@@ -25,6 +26,7 @@ body{
     border-color: black;
     border-width: 2px;
     padding: 1em;
+    font-weight: bold;
 }
 
 .defenderCard{
@@ -38,6 +40,7 @@ body{
     border-color: black;
     border-width: 2px;
     padding: 1em;
+    font-weight: bold;
 }
 
 #selectionRow,#enemyRow,#defenderRow{
@@ -52,4 +55,12 @@ body{
 
 .fade{
     opacity: 30%;
+}
+
+h1{
+    font-family: 'Press Start 2P', cursive;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.5);
+    width: fit-content;
+    padding: 1em;
 }

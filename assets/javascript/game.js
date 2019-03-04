@@ -41,17 +41,17 @@ var game = {
             playerCard.addClass("playerCard");
             playerCard.attr("name", this.playerName[i]);
             playerCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
-            playerCard.append(this.healthPoints[i]);
+            playerCard.append("HP " +this.healthPoints[i]);
 
             enemyCard.addClass("enemyCard");
             enemyCard.attr("name", this.playerName[i]);
             enemyCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
-            enemyCard.append(this.healthPoints[i]);
+            enemyCard.append("HP " +this.healthPoints[i]);
 
             defenderCard.addClass("defenderCard");
             defenderCard.attr("name", this.playerName[i]);
             defenderCard.html("<p>" + this.playerName[i] + "</p> <img id='cardImage' src='" + this.imageLocation[i] + "'></br>");
-            defenderCard.append(this.healthPoints[i]);
+            defenderCard.append("HP " +this.healthPoints[i]);
 
             if (game.playerTracker[i] === 1) {
                 $("#selectionRow").append(playerCard);
