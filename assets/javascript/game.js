@@ -67,8 +67,8 @@ var game = {
 };
 
 var chosen;
-var saberOn = new Audio('http://soundbible.com/grab.php?id=562&type=mp3', 100, true);
-var saberClash = new Audio('http://soundbible.com/grab.php?id=18&type=mp3', 100, true);
+var saberOn = new Audio('https://soundbible.com/grab.php?id=562&type=mp3', 100, true);
+var saberClash = new Audio('https://soundbible.com/grab.php?id=18&type=mp3', 100, true);
 var playerIndex;
 var enemyIndex;
 var gameover;
